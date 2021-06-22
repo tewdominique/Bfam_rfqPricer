@@ -22,7 +22,7 @@ namespace RfqParser.Controllers
 
 
         [HttpPost]
-        public double ComputePrice(string rfqLine)
+        public async double ComputePrice(string rfqLine)
         {
             double res = 0;
 
@@ -31,7 +31,7 @@ namespace RfqParser.Controllers
                 return -1;
             }
             Rfq rfq = _rfqParser.rfqBuilder(rfqLine);
-            res = _rfqPricerEngine.PricingOrchestration(rfq);
+            res = await _rfqPricerEngine.PricingOrchestrationAsync(rfq);
 
             return res;
 
