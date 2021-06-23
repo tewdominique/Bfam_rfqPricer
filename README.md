@@ -19,4 +19,5 @@ RfqPricerOrchestrator
 - Pair programming / Review
 - Add Config File in order to avoid redeploying the service in case of any change
 - implement Cache for the ReferencePriceSource if we want to optimize, with update in case of PriceUpdate
-- many more ....
+- reject the quote when the securityId is not in the referential
+
