@@ -24,14 +24,16 @@ namespace RfqParser.Domain
 
             double refPrice = _referencePriceSource.get(securityId);
             //make the calculation async
-            double quotedPrice = await Task.FromResult(_quoteCalculationEngine.calculateQuotePrice(securityId, refPrice, buy, quantity));
+            var quotedPrice = await _quoteCalculationEngine.calculateQuotePrice(securityId, refPrice, buy, quantity);
 
             return quotedPrice;
         }
 
-        public async double PricingOrchestrationAsync(Rfq rfq)
+        public async Task<double> PricingOrchestrationAsync(Rfq rfq)
         {
-            await Task.FromResult(PricingOrchestrationAsync(rfq.SecurityId, rfq.Buy, rfq.Quantity)) ;
+            var quotedPrice = await PricingOrchestrationAsync(rfq.SecurityId, rfq.Buy, rfq.Quantity);
+
+            return quotedPrice;
         }
     }
 }

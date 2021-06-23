@@ -22,18 +22,18 @@ namespace RfqParser.Controllers
 
 
         [HttpPost]
-        public async double ComputePrice(string rfqLine)
+        public async Task<IActionResult> ComputePrice(string rfqLine)
         {
             double res = 0;
 
             if (!_rfqParser.IsValid(rfqLine))
             {
-                return -1;
+                return BadRequest("Rfq Format should: SecurityId (BUY|SELL) Quantity") ;
             }
             Rfq rfq = _rfqParser.rfqBuilder(rfqLine);
             res = await _rfqPricerEngine.PricingOrchestrationAsync(rfq);
 
-            return res;
+            return Ok(res);
 
         }
 

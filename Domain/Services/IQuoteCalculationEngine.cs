@@ -7,6 +7,6 @@ namespace RfqParser.Infrastructure
 {
     public interface IQuoteCalculationEngine 
     {
-        double calculateQuotePrice(int securityId, double referencePrice, bool buy, int quantity);
+        Task<double> calculateQuotePrice(int securityId, double referencePrice, bool buy, int quantity);
     }
 }
