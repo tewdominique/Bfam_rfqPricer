@@ -22,6 +22,7 @@ namespace RfqParser.Controllers
 
 
         [HttpPost]
+        [Route("priceAsync")]
         public async Task<IActionResult> ComputePrice(string rfqLine)
         {
             double res = 0;

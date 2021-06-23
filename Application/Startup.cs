@@ -12,6 +12,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Reflection;
+using System.IO;
+using Microsoft.OpenApi.Models;
+
 
 namespace RfqParser
 {
@@ -28,6 +32,28 @@ namespace RfqParser
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Version = "v1",
+                    Title = "BfamRfqPricer API",
+                    Description = "Bfam RfqParserPricer in ASP.NET Core Web API",
+                    TermsOfService = new Uri("https://example.com/terms"),
+                    Contact = new OpenApiContact
+                    {
+                        Name = "Dominique TEW",
+                        Email = "tewdominique@gmail.com",
+                        Url = new Uri("https://github.com/tewdominique"),
+                    },
+                    License = new OpenApiLicense
+                    {
+                        Name = "RfqParser public repository",
+                        Url = new Uri("https://github.com/tewdominique/Bfam_rfqPricer"),
+                    }
+                });
+            });
 
             ConfigurePricer(services);
 
@@ -54,6 +80,14 @@ namespace RfqParser
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseSwagger();
+
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+                //c.RoutePrefix = string.Empty;
+            });
 
             app.UseHttpsRedirection();
 

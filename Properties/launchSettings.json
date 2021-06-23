@@ -15,7 +15,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
       "launchBrowser": true,
-      "launchUrl": "rfqPricer/price"
+      "launchUrl": "swagger"
     },
     "RfqParser": {
       "commandName": "Project",
